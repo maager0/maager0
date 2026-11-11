@@ -74,11 +74,18 @@
 
     .about-text { max-width: 800px; margin: 0 auto; font-size: 1.05rem; }
 
-    /* Стили для красивой галереи */
+    /* Стили для красивой галереи (ЦЕНТРИРОВАНИЕ) */
+    .gallery-wrapper {
+      display: flex;
+      justify-content: center; /* Центрируем сетку на ПК */
+      width: 100%;
+    }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(4, 1fr); /* На ПК строго 4 колонки */
       gap: 20px;
+      width: 100%;
+      max-width: 1000px; /* Ограничиваем ширину, чтобы не растягивалось */
     }
     .gallery figure {
       background: #fff;
@@ -88,6 +95,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
+      margin: 0; /* Убираем стандартные отступы figure */
     }
     .gallery figure:hover {
       transform: translateY(-5px);
@@ -96,15 +104,16 @@
     
     .gallery .img-container {
       width: 100%;
-      height: 250px; /* Фиксированная высота, чтобы карточки были ровными */
+      height: 220px; /* Высота картинок */
       overflow: hidden;
+      background: #f1e2c8; /* Фон, если картинка не загрузится */
     }
     
     .gallery img {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Картинки будут заполнять блок без искажений */
+      object-fit: cover; /* Картинки заполняют блок без искажений */
       transition: transform 0.5s ease;
     }
     
@@ -114,7 +123,7 @@
 
     .gallery figcaption { 
       padding: 16px; 
-      font-size: 1rem; 
+      font-size: 0.95rem; 
       color: var(--text); 
       text-align: center;
       font-weight: 500;
@@ -176,12 +185,18 @@
     .social svg { width: 40px; height: 40px; }
 
     /* Адаптивность */
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); } /* На планшетах 2 колонки */
+    }
     @media (max-width: 768px) {
       nav { flex-direction: column; gap: 16px; }
       section { padding: 50px 16px; }
       h1 { font-size: 2rem; }
       .hero { padding: 70px 16px; }
-      .gallery .img-container { height: 200px; }
+    }
+    @media (max-width: 500px) {
+      .gallery { grid-template-columns: 1fr; } /* На телефонах 1 колонка */
+      .gallery .img-container { height: 250px; }
     }
   </style>
 </head>
@@ -226,44 +241,46 @@
 
     <section id="gallery">
       <h2>Галерея</h2>
-      <div class="gallery">
-        <figure>
-          <div class="img-container">
-            <!-- Убедитесь, что файл называется именно так и лежит в той же папке -->
-            <img src="капучино.webp" alt="Капучино с молочной пенкой">
-          </div>
-          <figcaption>Капучино с молочной пенкой</figcaption>
-        </figure>
-        
-        <figure>
-          <div class="img-container">
-            <img src="Кофе.jpg" alt="Зерно из обжарки этой недели">
-          </div>
-          <figcaption>Зерно из обжарки этой недели</figcaption>
-        </figure>
-        
-        <figure>
-          <div class="img-container">
-            <!-- Сюда я добавил ссылку на круассан, судя по вашим фото. Если файл называется иначе, поменяйте src -->
-            <img src="круассан.jpg" alt="Круассан к утреннему кофе">
-          </div>
-          <figcaption>Круассан к утреннему кофе</figcaption>
-        </figure>
+      <div class="gallery-wrapper">
+        <div class="gallery">
+          <figure>
+            <div class="img-container">
+              <!-- Убедитесь, что файл называется именно так -->
+              <img src="капучино.webp" alt="Капучино с молочной пенкой">
+            </div>
+            <figcaption>Капучино с молочной пенкой</figcaption>
+          </figure>
+          
+          <figure>
+            <div class="img-container">
+              <img src="Кофе.jpg" alt="Зерно из обжарки этой недели">
+            </div>
+            <figcaption>Зерно из обжарки этой недели</figcaption>
+          </figure>
+          
+          <figure>
+            <div class="img-container">
+              <!-- ВАЖНО: Убедитесь, что фото круассана в папке называется "круассан.jpg" -->
+              <img src="Круассан.jpg" alt="Круассан к утреннему кофе">
+            </div>
+            <figcaption>Круассан к утреннему кофе</figcaption>
+          </figure>
 
-        <figure>
-          <div class="img-container">
-            <!-- Сюда я добавил ссылку на летнюю террасу. Если файл называется иначе, поменяйте src -->
-            <img src="терраса.jpg" alt="Летняя терраса">
-          </div>
-          <figcaption>Летняя терраса</figcaption>
-        </figure>
+          <figure>
+            <div class="img-container">
+              <!-- ВАЖНО: Убедитесь, что фото террасы в папке называется "терраса.jpg" -->
+              <img src="Летняя терраса.jpg" alt="Летняя терраса">
+            </div>
+            <figcaption>Летняя терраса</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
     <section id="contacts">
       <h2>Контакты</h2>
       <p style="text-align: center; margin-bottom: 30px;">
-        Адрес: г. Санкт-Петербург, ул. Примерная, д. 12<br>
+        Адрес: г. Санкт-Петербург, ул. Примерная, д. 67<br>
         Телефон: <a href="tel:+79991234567">+7 (999) 123-45-67</a><br>
         Email: <a href="mailto:example@mail.ru">example@mail.ru</a><br>
         Часы работы: пн–пт 8:00–21:00, сб–вс 9:00–20:00
@@ -298,11 +315,19 @@
         <p>Сайт создан в учебных целях.</p>
       </div>
       <div class="social">
-        <a href="https://vk.com" target="_blank" rel="noopener" aria-label="ВКонтакте">
-          <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#f3e7d8"/><text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#3b2a20">VK</text></svg>
+        <!-- Ссылка на Telegram -->
+        <a href="https://t.me/bogabn" target="_blank" rel="noopener" aria-label="Telegram">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <circle cx="18" cy="18" r="18" fill="#f3e7d8"/>
+            <text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#3b2a20">TG</text>
+          </svg>
         </a>
-        <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram">
-          <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#f3e7d8"/><text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#3b2a20">TG</text></svg>
+        <!-- Ссылка на GitHub -->
+        <a href="https://github.com/maager0" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 36 36" aria-hidden="true">
+            <circle cx="18" cy="18" r="18" fill="#f3e7d8"/>
+            <text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#3b2a20">GH</text>
+          </svg>
         </a>
       </div>
     </div>
