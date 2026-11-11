@@ -26,6 +26,7 @@
       top: 0;
       background: var(--dark);
       z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
     nav {
       max-width: 1000px;
@@ -35,106 +36,152 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
-      padding: 12px 16px;
+      padding: 16px;
     }
-    .logo { color: #fff; font-weight: 700; font-size: 1.2rem; text-decoration: none; }
-    nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 18px; }
-    nav a { color: #f3e7d8; text-decoration: none; }
+    .logo { color: #fff; font-weight: 700; font-size: 1.3rem; text-decoration: none; letter-spacing: 0.5px; }
+    nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 20px; }
+    nav a { color: #f3e7d8; text-decoration: none; font-weight: 500; transition: color 0.2s; }
     nav a:hover, nav a:focus { color: #e0b07a; }
-    section { max-width: 1000px; margin: 0 auto; padding: 70px 16px; }
-    h1 { font-size: 2.2rem; margin-bottom: 12px; }
-    h2 { font-size: 1.7rem; color: var(--accent); margin-bottom: 18px; }
-    p { margin-bottom: 14px; }
+    
+    section { max-width: 1000px; margin: 0 auto; padding: 80px 16px; }
+    h1 { font-size: 2.5rem; margin-bottom: 16px; }
+    h2 { font-size: 1.8rem; color: var(--accent); margin-bottom: 24px; text-align: center; }
+    p { margin-bottom: 16px; }
 
+    /* Стили для главного экрана (Hero) */
     .hero {
       background: var(--dark);
       color: #f3e7d8;
       max-width: none;
       text-align: center;
+      padding: 100px 16px;
     }
     .hero .inner { max-width: 700px; margin: 0 auto; }
     .hero h1 { color: #fff; }
-    .hero p { color: #d9c7b3; font-size: 1.1rem; }
-    .hero svg { width: 120px; height: 120px; margin-bottom: 20px; }
+    .hero p { color: #d9c7b3; font-size: 1.15rem; margin-bottom: 24px; }
+    .hero svg { width: 120px; height: 120px; margin-bottom: 24px; }
     .button {
       display: inline-block;
-      margin-top: 10px;
-      padding: 12px 26px;
+      padding: 14px 32px;
       background: var(--accent);
       color: #fff;
-      border-radius: 6px;
+      border-radius: 8px;
       text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
     }
-    .button:hover { background: #a86d36; }
+    .button:hover { background: #a86d36; transform: translateY(-2px); }
 
-    .about-text { max-width: 700px; }
+    .about-text { max-width: 800px; margin: 0 auto; font-size: 1.05rem; }
 
+    /* Стили для красивой галереи */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
     .gallery figure {
       background: #fff;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
-    .gallery svg { display: block; width: 100%; height: auto; }
-    .gallery figcaption { padding: 10px 12px; font-size: .95rem; color: var(--muted); }
+    .gallery figure:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,.12);
+    }
+    
+    .gallery .img-container {
+      width: 100%;
+      height: 250px; /* Фиксированная высота, чтобы карточки были ровными */
+      overflow: hidden;
+    }
+    
+    .gallery img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Картинки будут заполнять блок без искажений */
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery figure:hover img {
+      transform: scale(1.05); /* Легкий зум при наведении */
+    }
 
-    form { background: #fff; padding: 24px; border-radius: 8px; max-width: 600px; }
-    .field { margin-bottom: 16px; }
-    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    .gallery figcaption { 
+      padding: 16px; 
+      font-size: 1rem; 
+      color: var(--text); 
+      text-align: center;
+      font-weight: 500;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Стили формы */
+    form { background: #fff; padding: 32px; border-radius: 12px; max-width: 600px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,.05); }
+    .field { margin-bottom: 20px; }
+    label { display: block; font-weight: 600; margin-bottom: 8px; }
     input, textarea {
       width: 100%;
-      padding: 10px 12px;
+      padding: 12px 16px;
       border: 1px solid #cdbfb2;
-      border-radius: 6px;
+      border-radius: 8px;
       font: inherit;
       background: #fffdfa;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    textarea { min-height: 120px; resize: vertical; }
-    input:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
-    .error { color: var(--error); font-size: .9rem; min-height: 1em; margin-top: 4px; }
-    .success { display: none; color: #2e6b30; font-weight: 600; margin-top: 12px; }
+    textarea { min-height: 140px; resize: vertical; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.1); }
+    .error { color: var(--error); font-size: .9rem; min-height: 1em; margin-top: 6px; }
+    .success { display: none; color: #2e6b30; font-weight: 600; margin-top: 16px; text-align: center; }
     form button {
-      padding: 12px 26px;
+      width: 100%;
+      padding: 14px;
       background: var(--accent);
       color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font: inherit;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: background 0.3s;
     }
     form button:hover { background: #a86d36; }
 
-    footer { background: var(--dark); color: #d9c7b3; }
+    /* Подвал */
+    footer { background: var(--dark); color: #d9c7b3; margin-top: 40px; }
     footer .inner {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 30px 16px;
+      padding: 40px 16px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
     }
-    footer a { color: #f3e7d8; text-decoration: none; }
+    footer a { color: #f3e7d8; text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: #e0b07a; }
-    .social { display: flex; gap: 10px; }
-    .social a { display: inline-flex; }
-    .social svg { width: 36px; height: 36px; }
+    .social { display: flex; gap: 12px; }
+    .social a { display: inline-flex; transition: transform 0.2s; }
+    .social a:hover { transform: translateY(-3px); }
+    .social svg { width: 40px; height: 40px; }
 
-    @media (max-width: 800px) {
-      .gallery { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 500px) {
-      h1 { font-size: 1.8rem; }
-      h2 { font-size: 1.4rem; }
-      .gallery { grid-template-columns: 1fr; }
-      nav ul { gap: 12px; }
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 16px; }
       section { padding: 50px 16px; }
+      h1 { font-size: 2rem; }
+      .hero { padding: 70px 16px; }
+      .gallery .img-container { height: 200px; }
     }
   </style>
 </head>
@@ -181,31 +228,33 @@
       <h2>Галерея</h2>
       <div class="gallery">
         <figure>
-          <img src="капучино.webp">
-          </svg>
+          <div class="img-container">
+            <!-- Убедитесь, что файл называется именно так и лежит в той же папке -->
+            <img src="капучино.webp" alt="Капучино с молочной пенкой">
+          </div>
           <figcaption>Капучино с молочной пенкой</figcaption>
         </figure>
+        
         <figure>
-          <img src="Кофе.jpg">
-          </svg>
+          <div class="img-container">
+            <img src="Кофе.jpg" alt="Зерно из обжарки этой недели">
+          </div>
           <figcaption>Зерно из обжарки этой недели</figcaption>
         </figure>
+        
         <figure>
-          <svg viewBox="0 0 200 150" aria-hidden="true">
-            <rect width="200" height="150" fill="#f1e2c8"/>
-            <ellipse cx="100" cy="90" rx="55" ry="22" fill="#d9954a"/>
-            <ellipse cx="100" cy="84" rx="40" ry="12" fill="#e9b170"/>
-            <path d="M60 86 Q100 40 140 86" fill="none" stroke="#c07a33" stroke-width="2"/>
-          </svg>
+          <div class="img-container">
+            <!-- Сюда я добавил ссылку на круассан, судя по вашим фото. Если файл называется иначе, поменяйте src -->
+            <img src="круассан.jpg" alt="Круассан к утреннему кофе">
+          </div>
           <figcaption>Круассан к утреннему кофе</figcaption>
         </figure>
+
         <figure>
-          <svg viewBox="0 0 200 150" aria-hidden="true">
-            <rect width="200" height="150" fill="#cfd8c4"/>
-            <rect x="40" y="30" width="120" height="90" rx="10" fill="#8fa37b"/>
-            <path d="M70 110 L100 60 L130 110 Z" fill="#6e8159"/>
-            <circle cx="140" cy="50" r="10" fill="#f4d58d"/>
-          </svg>
+          <div class="img-container">
+            <!-- Сюда я добавил ссылку на летнюю террасу. Если файл называется иначе, поменяйте src -->
+            <img src="терраса.jpg" alt="Летняя терраса">
+          </div>
           <figcaption>Летняя терраса</figcaption>
         </figure>
       </div>
@@ -213,10 +262,12 @@
 
     <section id="contacts">
       <h2>Контакты</h2>
-      <p>Адрес: г. Санкт-Петербург, ул. Примерная, д. 12<br>
-         Телефон: <a href="tel:+79991234567">+7 (999) 123-45-67</a><br>
-         Email: <a href="mailto:example@mail.ru">example@mail.ru</a><br>
-         Часы работы: пн–пт 8:00–21:00, сб–вс 9:00–20:00</p>
+      <p style="text-align: center; margin-bottom: 30px;">
+        Адрес: г. Санкт-Петербург, ул. Примерная, д. 12<br>
+        Телефон: <a href="tel:+79991234567">+7 (999) 123-45-67</a><br>
+        Email: <a href="mailto:example@mail.ru">example@mail.ru</a><br>
+        Часы работы: пн–пт 8:00–21:00, сб–вс 9:00–20:00
+      </p>
 
       <form id="feedback-form" novalidate>
         <div class="field">
@@ -248,10 +299,10 @@
       </div>
       <div class="social">
         <a href="https://vk.com" target="_blank" rel="noopener" aria-label="ВКонтакте">
-          <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#3b2a20"/><text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#f3e7d8">VK</text></svg>
+          <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#f3e7d8"/><text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#3b2a20">VK</text></svg>
         </a>
         <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram">
-          <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#3b2a20"/><text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#f3e7d8">TG</text></svg>
+          <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="18" fill="#f3e7d8"/><text x="18" y="23" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" fill="#3b2a20">TG</text></svg>
         </a>
       </div>
     </div>
